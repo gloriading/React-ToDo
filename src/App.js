@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import TodoManager from './components/TodoManager';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        TEST
+        <TodoManager />
       </div>
     );
   }
