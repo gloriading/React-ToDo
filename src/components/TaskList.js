@@ -7,14 +7,15 @@ export default class TaskList extends Component {
   }
 
   render(){
+    // console.log(this.props.todos);
+    let todolist;
+    todolist = this.props.todos.map(todo=>{
+      return <Task key={todo} todo={todo} />
+    });
+    console.log(todolist);
     return(
       <div className="task-list">
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
+        {todolist}
       </div>
     );
   }

@@ -5,6 +5,12 @@ import TaskList from './TaskList';
 export default class TodoManager extends Component {
   constructor(props){
     super(props);
+    const todos = [ "Do Dishes", "Take Out Trash", "Make the Bed", "Do Laundry"];
+
+    this.state = {
+      todos: todos,
+      newTask: ""
+    };
   }
 
   render(){
@@ -14,7 +20,7 @@ export default class TodoManager extends Component {
           <h1> <span className="whiteText">React</span> To-Do </h1>
         </div>
         <AddTaskForm />
-        <TaskList />
+        <TaskList todos={this.state.todos} />
       </div>
     );
   }
