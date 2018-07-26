@@ -9,8 +9,15 @@ export default class TodoManager extends Component {
 
     this.state = {
       todos: todos,
-      newTask: ""
+      newTodo: ""
     };
+    this.updateTodoList = this.updateTodoList.bind(this);
+  }
+
+  updateTodoList(taskReceied){
+    this.setState({
+      todos: [...this.state.todos, taskReceied]
+    });
   }
 
   render(){
@@ -19,7 +26,7 @@ export default class TodoManager extends Component {
         <div className="header">
           <h1> <span className="whiteText">React</span> To-Do </h1>
         </div>
-        <AddTaskForm />
+        <AddTaskForm updateTodoList={this.updateTodoList} />
         <TaskList todos={this.state.todos} />
       </div>
     );
