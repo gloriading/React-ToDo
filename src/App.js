@@ -7,6 +7,10 @@ class App extends Component {
     return (
       <div className="App">
         <TodoManager />
+        <footer>
+          <p className="logo">&copy; <span className="pinkText">Glorious</span> Web Design</p>
+        </footer>
+
       </div>
     );
   }
