@@ -14,7 +14,7 @@ export default class Task extends Component {
   render(){
     return(
       <div className="task-container">
-        <p>{this.props.todo}<span onClick={this.deleteTask}>Delete</span></p>
+        <p>{this.props.todo}<span className="delete-btn" onClick={this.deleteTask}>Delete</span></p>
       </div>
     );
   }

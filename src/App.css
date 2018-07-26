@@ -82,8 +82,13 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.task-container span {
-  font-size: 12px;  
+.delete-btn {
+  font-size: 12px;
+  transition: 0.2s;
+}
+.delete-btn:hover {
+  transform: translateY(8%);
+  cursor: pointer;
 }
 /* footer */
 .logo {
