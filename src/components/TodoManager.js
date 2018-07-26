@@ -12,12 +12,21 @@ export default class TodoManager extends Component {
       newTodo: ""
     };
     this.updateTodoList = this.updateTodoList.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   updateTodoList(taskReceied){
     this.setState({
       todos: [...this.state.todos, taskReceied]
     });
+  }
+
+  deleteTask(index){
+    let currentTodos = this.state.todos;
+    let filteredTodos = currentTodos.filter(todo=>
+      currentTodos.indexOf(todo) != index
+    );
+    this.setState({ todos: filteredTodos });
   }
 
   render(){
@@ -27,7 +36,7 @@ export default class TodoManager extends Component {
           <h1> <span className="whiteText">React</span> To-Do </h1>
         </div>
         <AddTaskForm updateTodoList={this.updateTodoList} />
-        <TaskList todos={this.state.todos} />
+        <TaskList todos={this.state.todos} onDeleteTask={this.deleteTask} />
       </div>
     );
   }

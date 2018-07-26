@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const Task = (props) => {
-  return (
-    <div className="task-container">
-      <p>{props.todo}</p>
-    </div>
-  )
+export default class Task extends Component {
+  constructor(props){
+    super(props);
+
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  deleteTask(){
+    this.props.onDeleteTask(this.props.index);
+  }
+
+  render(){
+    return(
+      <div className="task-container">
+        <p>{this.props.todo}<span onClick={this.deleteTask}>Delete</span></p>
+      </div>
+    );
+  }
 }
-
-export default Task;
