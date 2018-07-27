@@ -17,14 +17,27 @@ export default class TaskList extends Component {
 
     let todolist;
     todolist = this.props.todos.map((todo, index)=>{
-      return <Task key={todo} todo={todo} onDeleteTask={this.onDeleteTask} index={index}/>
+      return <Task key={todo} todo={todo} onDeleteTask={this.onDeleteTask} index={index} />
     });
 
-    return(
-      <div className="task-list">
-        {todolist}
-      </div>
-    );
+    if(this.props.isLoaded){
+      return(
+        <div className="task-list">
+          {todolist}
+        </div>
+      );
+    }else{
+      return(
+        <div className="loading">
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </div>
+      )
+    }
+
   }
 
 }

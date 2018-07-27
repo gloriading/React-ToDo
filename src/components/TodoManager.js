@@ -9,10 +9,24 @@ export default class TodoManager extends Component {
 
     this.state = {
       todos: todos,
-      newTodo: ""
+      newTodo: "",
+      isLoaded: false
     };
     this.updateTodoList = this.updateTodoList.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      let apiTodos = data.map( obj => obj.title );
+      this.setState({
+        todos: apiTodos,
+        isLoaded: true
+       });
+    })
   }
 
   updateTodoList(taskReceied){
@@ -36,7 +50,11 @@ export default class TodoManager extends Component {
           <h1> <span className="whiteText">React</span> To-Do </h1>
         </div>
         <AddTaskForm updateTodoList={this.updateTodoList} />
-        <TaskList todos={this.state.todos} onDeleteTask={this.deleteTask} />
+        <TaskList
+          todos={this.state.todos}
+          onDeleteTask={this.deleteTask}
+          isLoaded={this.state.isLoaded}
+         />
       </div>
     );
   }
