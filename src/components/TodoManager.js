@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import AddTaskForm from './AddTaskForm';
 import TaskList from './TaskList';
+import {Capitalize} from './Capitalize';
+
 
 export default class TodoManager extends Component {
   constructor(props){
@@ -20,10 +22,12 @@ export default class TodoManager extends Component {
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      let apiTodos = data.map( obj => obj.title );
+      let apiTodos = data.map( obj => Capitalize(obj.title) );
+      let arrLength = apiTodos.length;
+      let numberOfTodo = 10;
+      let partialApiTodos = apiTodos.slice(arrLength-numberOfTodo);
       this.setState({
-        todos: apiTodos,
+        todos: partialApiTodos,
         isLoaded: true
        });
     })
@@ -38,7 +42,7 @@ export default class TodoManager extends Component {
   deleteTask(index){
     let currentTodos = this.state.todos;
     let filteredTodos = currentTodos.filter(todo=>
-      currentTodos.indexOf(todo) != index
+      currentTodos.indexOf(todo) !== index
     );
     this.setState({ todos: filteredTodos });
   }

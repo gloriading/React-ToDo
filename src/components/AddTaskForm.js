@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
-
-
-function capitalize(sentence){
-  let arr = sentence.split(' ');
-  let capArr = arr.map(word=>{
-    return word[0].toUpperCase() + word.slice(1)
-  });
-  return capArr.join(' ');
-}
+import {Capitalize} from './Capitalize';
 
 export default class AddTaskForm extends Component {
   constructor(props){
@@ -28,7 +20,7 @@ export default class AddTaskForm extends Component {
     if(this.state.inputValue === ""){
       alert('This input field cannot be blank');
     }else{
-      let capitalizedInput = capitalize(this.state.inputValue);
+      let capitalizedInput = Capitalize(this.state.inputValue);
       this.props.updateTodoList(capitalizedInput);
       this.setState({ inputValue: "" });
     }
